@@ -1,7 +1,7 @@
 <template>
     <header class="fixed w-full bg-blue-800 p-4 text-blue-300 shadow-lg">
       <div class="container mx-auto flex justify-between items-center">
-        <div class="text-lg font-bold">SwiftCart</div>
+        <div class="text-lg font-bold">myCart</div>
 
         <div class="hidden md:flex">
           <a href="/" class="mr-4 hover:underline">wishlist</a>
