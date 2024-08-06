@@ -1,5 +1,5 @@
 <template>
-    <nav class="fixed w-full bg-blue-800 p-4 text-pink-50 shadow-lg">
+    <header class="fixed w-full bg-blue-800 p-4 text-pink-50 shadow-lg">
       <div class="container mx-auto flex justify-between items-center">
         <div class="text-lg font-bold">SwiftCart</div>
         <div class="hidden md:flex">
@@ -97,7 +97,7 @@
         </a>
         <a href="./" class="block p-2 hover:bg-pink-400">Login</a>
       </div>
-    </nav>
+    </header>
   </template>
   
   <script>
