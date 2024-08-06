@@ -1,22 +1,17 @@
 <template>
-    <!-- Grid layout to display products -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Iterate over filtered products and render each product card -->
       <div v-for="product in filteredProducts" :key="product.id" class="card-container bg-white shadow-md rounded-lg overflow-hidden border p-4 cursor-pointer hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
-        <!-- Link to the product detail page -->
         <router-link :to="`/product/${product.id}`" class="flex justify-center items-center">
-          <!-- Product image -->
           <img :src="product.image" :alt="product.title" class="w-400px h-48 object-cover mb-5 rounded" />
         </router-link>
-        <!-- Product details and actions -->
         <div class="card-content p-4 flex flex-col flex-grow">
-          <!-- Product title -->
+          <!-- Title -->
           <h3 class="text-lg font-bold mb-2">{{ product.title }}</h3>
-          <!-- Product price -->
+          <!-- Price -->
           <p class="text-gray-700 mb-2">${{ product.price }}</p>
-          <!-- Product category -->
+          <!-- Category -->
           <p class="text-gray-500">{{ product.category }}</p>
-          <!-- Product rating and review count -->
+          <!-- Rating and Reviews -->
           <p class="text-gray-700 mb-4">
             Rating: {{ product.rating.rate }} ({{ product.rating.count }} reviews)
           </p>
