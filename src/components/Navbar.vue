@@ -97,7 +97,7 @@
         </a>
         <a href="./" class="block p-2 hover:bg-pink-400">Login</a>
       </div>
-    </nav>
+    </nav>hfg
   </template>
   
   <script>
