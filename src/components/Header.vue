@@ -3,7 +3,7 @@
             <nav class="flex justify-between items-center w-[92%] mx-auto">
                 <a href="/">
                     <div>
-                        <img class="w-16" src="../public/favicon.ico" alt="logo">
+                        <img class="w-16" src="./favicon.ico" alt="logo">
                     </div>
                 </a>
                 <div class="md:static absolute bg-[#086788] text-2xl text-blue-100 md:min-h-fit min-h-[60vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-5 ">
