@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '../views/Home.vue'; // Path to Home.vue
-import ProductDetail from '../views/ProductDetails.vue';
+import Home from '../pages/Home.vue'; // Path to Home.vue
+import ProductDetail from '../pages/ProductDetails.vue';
  // Path to ProductDetail.vue
 
 const routes = [
@@ -13,6 +13,6 @@ const router = createRouter({
   routes
 });
 
-export default router;
+export default routing;
 
 
