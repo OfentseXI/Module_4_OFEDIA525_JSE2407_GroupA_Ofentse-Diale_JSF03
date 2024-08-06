@@ -1,6 +1,3 @@
-<script setup> 
-</script>
-
 <template>
 
         <header class="bg-[#086788]">
@@ -31,6 +28,28 @@
           </header>
 
 </template>
+
+<script setup>
+  import { ref } from 'vue';
+  
+  export default {
+    name: 'Navbar',
+    setup() {
+      // Reactive state for menu open/close
+      const open = ref(false);
+  
+      // Toggle menu function
+      const toggleMenu = () => {
+        open.value = !open.value;
+      };
+  
+      return {
+        open,
+        toggleMenu,
+      };
+    },
+  }; 
+</script>
 
 <style scoped>
 </style>
