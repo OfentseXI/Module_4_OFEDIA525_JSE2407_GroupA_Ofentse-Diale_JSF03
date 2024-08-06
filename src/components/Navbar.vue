@@ -1,7 +1,8 @@
 <template>
-    <header class="fixed w-full bg-blue-800 p-4 text-pink-50 shadow-lg">
+    <header class="fixed w-full bg-blue-800 p-4 text-blue-300 shadow-lg">
       <div class="container mx-auto flex justify-between items-center">
         <div class="text-lg font-bold">SwiftCart</div>
+
         <div class="hidden md:flex">
           <a href="/" class="mr-4 hover:underline">wishlist</a>
           <a href="./" class="mr-4 hover:underline">cart</a>
@@ -58,10 +59,10 @@
           </svg>
         </button>
       </div>
-      <div v-if="open" class="md:hidden mt-4 bg-yellow-500">
-        <a href="/" class="block p-2 hover:bg-yellow-400">wishlist</a>
-        <a href="./" class="block p-2 hover:bg-yellow-400"></a>
-        <a href="./" class="block p-2 hover:bg-yellow-400">
+      <div v-if="open" class="md:hidden mt-4 bg-slate-500">
+        <a href="/" class="block p-2 hover:bg-slate-500">wishlist</a>
+        <a href="./" class="block p-2 hover:bg-slate-500"></a>
+        <a href="./" class="block p-2 hover:bg-slate-500">
           <svg
             width="32px"
             height="32px"
