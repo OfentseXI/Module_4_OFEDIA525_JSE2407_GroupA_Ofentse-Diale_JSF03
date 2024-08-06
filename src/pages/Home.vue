@@ -1,6 +1,6 @@
 <script>
-    import FilterAndSort from "../components/FilterAndSort.vue";
-    import ProductsList from "../components/ProductsList.vue";
+   // import FilterAndSort from "../components/FilterAndSort.vue";
+    //import ProductsList from "../components/ProductsList.vue";
 </script>.
 
 <template>
