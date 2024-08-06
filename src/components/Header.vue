@@ -1,10 +1,9 @@
 <template>
-
         <header class="bg-[#086788]">
             <nav class="flex justify-between items-center w-[92%] mx-auto">
                 <a href="/">
                     <div>
-                        <img class="w-16" src="./src/assets/favicon.ico" alt="logo">
+                        <img class="w-16" src="../public/favicon.ico" alt="logo">
                     </div>
                 </a>
                 <div class="md:static absolute bg-[#086788] text-2xl text-blue-100 md:min-h-fit min-h-[60vh] left-0 top-[-100%] md:w-auto w-full flex items-center px-5 ">
@@ -26,29 +25,10 @@
                 </div>
             </nav>
           </header>
-
 </template>
 
 <script setup>
-  import { ref } from 'vue';
-  
-  export default {
-    name: 'Navbar',
-    setup() {
-      // Reactive state for menu open/close
-      const open = ref(false);
-  
-      // Toggle menu function
-      const toggleMenu = () => {
-        open.value = !open.value;
-      };
-  
-      return {
-        open,
-        toggleMenu,
-      };
-    },
-  }; 
+
 </script>
 
 <style scoped>
