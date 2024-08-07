@@ -8,7 +8,7 @@ Throughout this project, I learnt how to create reusable components, manage stat
 
 ## 🤖 Technologies
 
-* Vue #: A lightweight JavaScript framework for building web applications
+* Vue: A JavaScript framework for building user interfaces. It builds on top of standard HTML, CSS, and JavaScript and provides a declarative, component-based programming model that helps you efficiently develop user interfaces of any complexity.
 * JavaScript: The programming language used for building the application
 * HTML: Used for structuring
 * TailwindCSS: Used for styling the application
