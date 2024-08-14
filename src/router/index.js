@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
 import Login from '../views/Login.vue';
 import ProductDetail from '../views/ProductDetails.vue';
+import Wishlist from '../views/Wishlist.vue'
 
 const routes = [
   { path: '/', component: Home },
