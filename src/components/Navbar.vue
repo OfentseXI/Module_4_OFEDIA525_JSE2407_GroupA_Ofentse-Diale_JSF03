@@ -5,8 +5,8 @@
           <img src='../assets/favicon.ico' alt='logo'>myCart
           </div>
         <div class="hidden md:flex">
-          <a href="/" class="mr-4 hover:underline">wishlist</a>
-          <a href="./" class="mr-4 hover:underline">cart</a>
+          <a href="/wishlist" class="mr-4 hover:underline">wishlist</a>
+          <a href="/cart" class="mr-4 hover:underline">cart</a>
           <a v-if="!isAuthenticated" href="/login" class="mr-4 hover:underline">Login</a>
           <a v-else @click="logout" class="mr-4 hover:underline cursor-pointer">Logout</a>
         </div>
@@ -28,8 +28,8 @@
         </button>
       </div>
       <div v-if="open" class="md:hidden mt-4 bg-slate-500">
-        <a href="/" class="block p-2 hover:bg-slate-500">wishlist</a>
-        <a href="./" class="block p-2 hover:bg-slate-500"></a>
+        <a href="/wishlist" class="block p-2 hover:bg-slate-500">wishlist</a>
+        <a href="/" class="block p-2 hover:bg-slate-500"></a>
         <a href="./" class="block p-2 hover:bg-slate-500">
           <svg
             width="32px"
@@ -64,7 +64,7 @@
             />
           </svg>
         </a>
-        <a href="./" class="block p-2 hover:bg-pink-400">Login</a>
+        <a href="./" class="block p-2 hover:bg-pink-400"><button>Login</button></a>
       </div>
     </header>
   </template>
