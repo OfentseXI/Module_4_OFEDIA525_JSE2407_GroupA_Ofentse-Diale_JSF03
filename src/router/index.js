@@ -6,11 +6,11 @@ import Wishlist from '../views/Wishlist.vue';
 import Cart from '../views/Cart.vue'
 
 const routes = [
-  { path: '/', component: Home },
-  { path: '/login', component: Login },
-  { path: '/product/:id', component: ProductDetail, props: true, meta: { requiresAuth: true } },
-  { path: '/wishlist', component: Wishlist },
-  { path: '/cart', component: Cart }
+  { path: '/', name:'home', component: Home },
+  { path: '/login', name:'login', component: Login },
+  { path: '/product/:id', name:'product', component: ProductDetail, props: true, meta: { requiresAuth: true } },
+  { path: '/wishlist', name:'wishlist', component: Wishlist },
+  { path: '/cart', name:'cart', component: Cart }
 ];
 
 const router = createRouter({
