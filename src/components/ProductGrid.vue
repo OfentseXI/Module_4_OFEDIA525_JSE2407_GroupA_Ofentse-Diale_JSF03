@@ -18,7 +18,7 @@
             </svg>
           </button>
           <button 
-            @click="addToCart(product.id)"
+            @click="addToCart(product)"
             class="bg-blue-900 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-opacity-75 transition duration-200">
             Add To Cart
           </button>
@@ -30,7 +30,7 @@
 
 <script>
 import { ref, onMounted } from 'vue';
-import { useShoppingStore } from '../stores/stores'; // Ensure correct path to your store
+import { useShoppingStore } from '../stores/stores';
 
 export default {
   name: 'ProductGrid',
@@ -42,7 +42,7 @@ export default {
   },
   setup(props) {
     const favorites = ref([]);
-    const shoppingStore = useShoppingStore(); // Initialize the store
+    const shoppingStore = useShoppingStore(); 
 
     onMounted(() => {
       const storedFavorites = localStorage.getItem('favorites');
@@ -65,8 +65,8 @@ export default {
       return favorites.value.includes(productId);
     };
 
-    const addToCart = (productId) => {
-      shoppingStore.addToCart(productId); // Example action, replace with actual store action
+    const addToCart = (product) => {
+      shoppingStore.addToCart(product);
     };
 
     return {
@@ -77,7 +77,3 @@ export default {
   }
 };
 </script>
-
-<style>
-/* Add specific styles for the ProductGrid component */
-</style>
