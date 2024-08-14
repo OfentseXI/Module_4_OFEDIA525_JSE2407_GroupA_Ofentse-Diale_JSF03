@@ -30,6 +30,7 @@
 
 <script>
 import { ref, onMounted } from 'vue';
+import { useShoppingStore } from '../stores/stores';
 
 export default {
   name: 'ProductGrid',
@@ -69,6 +70,7 @@ export default {
     };
   }
 };
+const data = useShoppingStore();
 </script>
 
 <style>
