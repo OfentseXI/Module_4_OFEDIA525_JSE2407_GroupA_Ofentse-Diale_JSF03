@@ -1,73 +1,52 @@
 <template>
-    <div class="row my-4">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Image</th>
-                                <th>Name</th>
-                                <th>Quantity</th>
-                                <th>Price</th>
-                                <th>Subtotal</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="item in data.getCartItems" :key="item.id">
-                                <td>{{item.id}}</td>
-                                <td>
-                                    <img :src="item.image" 
-                                    class="fluid rounded"
-                                    width="60"
-                                    height="60"    
-                                    :alt="item.name" />
-                                </td>
-                                <td>
-                                    {{item.name}}
-                                </td>
-                                <td>
-                                    <i 
-                                        @click="data.incrementQ(item)"
-                                        class="bi bi-caret-up"></i>
-                                    <span class="mx-2">
-                                        {{item.quantity}}
-                                    </span>
-                                    <i 
-                                        @click="data.decrementQ(item)"
-                                        class="bi bi-caret-down"></i>
-                                </td>
-                                <td>
-                                    ${{item.price}}
-                                </td>
-                                <td>
-                                    ${{item.price * item.quantity}} 
-                                </td>
-                                <td>
-                                    <i 
-                                        @click="data.removeFromCart(item)"
-                                        class="bi bi-cart-x text-danger"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th colSpan="3" class="text-center">
-                                    Total
-                                </th>
-                                <td colSpan="3" class="text-center">
-                                    <span class="badge bg-danger rounded-pill">
-                                        ${{ data.cartItems.reduce((acc,item) => acc += item.price * item.quantity,0) }}
-                                    </span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+    <div class="my-4">
+      <div class="w-full">
+        <div class="bg-white shadow-md rounded-lg overflow-hidden">
+          <div class="p-4">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Image</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
+                  <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Subtotal</th>
+                  <th class="px-6 py-3"></th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr v-for="item in data.getCartItems" :key="item.id">
+                  <td class="px-6 py-4 whitespace-nowrap">{{ item.id }}</td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <img :src="item.image" class="rounded w-15 h-15 object-cover" :alt="item.name" />
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">{{ item.name }}</td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <i @click="data.incrementQ(item)" class="bi bi-caret-up cursor-pointer text-blue-500"></i>
+                    <span class="mx-2">{{ item.quantity }}</span>
+                    <i @click="data.decrementQ(item)" class="bi bi-caret-down cursor-pointer text-blue-500"></i>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">${{ item.price }}</td>
+                  <td class="px-6 py-4 whitespace-nowrap">${{ item.price * item.quantity }}</td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <i @click="data.removeFromCart(item)" class="bi bi-cart-x cursor-pointer text-red-500"></i>
+                  </td>
+                </tr>
+                <tr>
+                  <th colSpan="3" class="px-6 py-4 text-center text-gray-700">Total</th>
+                  <td colSpan="3" class="px-6 py-4 text-center">
+                    <span class="bg-red-500 text-white rounded-full px-3 py-1">${{ data.cartItems.reduce((acc, item) => acc += item.price * item.quantity, 0) }}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
+      </div>
     </div>
-</template>
+  </template>
+  
 
 <script setup>
     import { useShoppingStore } from "../stores/stores"
