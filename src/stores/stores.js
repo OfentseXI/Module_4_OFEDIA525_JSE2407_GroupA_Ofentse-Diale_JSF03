@@ -20,7 +20,7 @@ export const useShoppingStore = defineStore('shopping', {
   actions: {
     async fetchProducts() {
       try {
-        const response = await axios.get('https://your-api-url.com/products') // replace with your API URL
+        const response = await axios.get('https://fakestoreapi.com/products')
         this.products = response.data
       } catch (error) {
         console.error(error)
