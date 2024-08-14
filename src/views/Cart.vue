@@ -1,8 +1,5 @@
 <template>
-    <div class="my-4">
-      <div class="w-full">
-        <div class="bg-white shadow-md rounded-lg overflow-hidden">
-          <div class="p-4">
+    <div class="my-4 p-4 w-full bg-white shadow-md rounded-lg overflow-hidden">
             <table class="min-w-full divide-y divide-gray-200">
               <thead class="bg-gray-50">
                 <tr>
@@ -42,9 +39,6 @@
               </tbody>
             </table>
           </div>
-        </div>
-      </div>
-    </div>
   </template>
   
 
