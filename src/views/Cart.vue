@@ -69,8 +69,11 @@
     </div>
 </template>
 
-<script>
+<script setup>
+    import { useShoppingStore } from "../stores/stores"
+    const data = useShoppingStore();
 </script>
+
 
 <style>
 </style>
