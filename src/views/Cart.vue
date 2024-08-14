@@ -44,12 +44,18 @@
   </template>
   
   <script setup>
-  import { useShoppingStore } from "../stores/stores";
+  import { useShoppingStore } from '../stores/stores';
+  import { computed } from 'vue';
+  
   const store = useShoppingStore();
   
-  // Destructure the store methods and properties
-  const { cartItems, incrementQ, decrementQ, removeFromCart } = store;
+  // Computed properties to access store state and methods
+  const cartItems = computed(() => store.cartItems);
+  const incrementQ = store.incrementQ;
+  const decrementQ = store.decrementQ;
+  const removeFromCart = store.removeFromCart;
   </script>
   
-<style>
-</style>
+  <style scoped>
+  </style>
+  
