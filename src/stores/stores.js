@@ -5,7 +5,7 @@ import axios from 'axios';
 export const useShoppingStore = defineStore('shopping', {
   state: () => ({
     products: [],
-    cartItems: []
+    cartItems: [],
   }),
   getters: {
     countCartItems: (state) => state.cartItems.length,
@@ -18,7 +18,7 @@ export const useShoppingStore = defineStore('shopping', {
         const response = await axios.get('https://fakestoreapi.com/products');
         this.products = response.data;
       } catch (error) {
-        console.error(error);
+        console.error('Failed to fetch products:', error);
       }
     },
     // Add an item to the cart
@@ -28,9 +28,8 @@ export const useShoppingStore = defineStore('shopping', {
         this.cartItems[index].quantity += 1;
         this.showNotification('success', 'Your item has been updated');
       } else {
-        item.quantity = 1;
-        this.cartItems.push(item);
-        this.showNotification('success', 'Your item has been saved');
+        this.cartItems.push({ ...item, quantity: 1 });
+        this.showNotification('success', 'Your item has been added to the cart');
       }
     },
     // Increment the quantity of an item in the cart
@@ -38,7 +37,7 @@ export const useShoppingStore = defineStore('shopping', {
       const index = this.cartItems.findIndex(product => product.id === item.id);
       if (index !== -1) {
         this.cartItems[index].quantity += 1;
-        this.showNotification('success', 'Your item has been updated');
+        this.showNotification('success', 'Item quantity has been increased');
       }
     },
     // Decrement the quantity of an item in the cart
@@ -47,15 +46,20 @@ export const useShoppingStore = defineStore('shopping', {
       if (index !== -1) {
         this.cartItems[index].quantity -= 1;
         if (this.cartItems[index].quantity === 0) {
-          this.cartItems = this.cartItems.filter(product => product.id !== item.id);
+          this.cartItems.splice(index, 1);
+          this.showNotification('success', 'Item has been removed from the cart');
+        } else {
+          this.showNotification('success', 'Item quantity has been decreased');
         }
-        this.showNotification('success', 'Your item has been updated');
       }
     },
     // Remove an item from the cart
     removeFromCart(item) {
-      this.cartItems = this.cartItems.filter(product => product.id !== item.id);
-      this.showNotification('success', 'Your item has been removed');
+      const index = this.cartItems.findIndex(product => product.id === item.id);
+      if (index !== -1) {
+        this.cartItems.splice(index, 1);
+        this.showNotification('success', 'Item has been removed from the cart');
+      }
     },
     // Show notification using Swal
     showNotification(icon, title) {
@@ -64,8 +68,8 @@ export const useShoppingStore = defineStore('shopping', {
         icon: icon,
         title: title,
         showConfirmButton: false,
-        timer: 1500
+        timer: 1500,
       });
-    }
-  }
+    },
+  },
 });
