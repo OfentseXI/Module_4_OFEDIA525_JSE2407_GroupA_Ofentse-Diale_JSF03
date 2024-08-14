@@ -13,21 +13,21 @@
           </tr>
         </thead>
         <tbody class="bg-white divide-y divide-gray-200">
-          <tr v-for="item in cartItems" :key="item.id">
-            <td class="px-6 py-4 whitespace-nowrap">{{ item.id }}</td>
+          <tr v-for="product in cartItems" :key="product.id">
+            <td class="px-6 py-4 whitespace-nowrap">{{ product.id }}</td>
             <td class="px-6 py-4 whitespace-nowrap">
-              <img :src="item.image" class="rounded w-15 h-15 object-cover" :alt="item.name" />
+              <img :src="product.image" class="rounded w-15 h-15 object-cover" :alt="product.title" />
             </td>
-            <td class="px-6 py-4 whitespace-nowrap">{{ item.name }}</td>
+            <td class="px-6 py-4 whitespace-nowrap">{{ product.title }}</td>
             <td class="px-6 py-4 whitespace-nowrap">
-              <i @click="incrementQ(item)" class="bi bi-caret-up cursor-pointer text-blue-500"></i>
-              <span class="mx-2">{{ item.quantity }}</span>
-              <i @click="decrementQ(item)" class="bi bi-caret-down cursor-pointer text-blue-500"></i>
+              <i @click="incrementQ(product)" class="bi bi-caret-up cursor-pointer text-blue-500"></i>
+              <span class="mx-2">{{ product.quantity }}</span>
+              <i @click="decrementQ(product)" class="bi bi-caret-down cursor-pointer text-blue-500"></i>
             </td>
-            <td class="px-6 py-4 whitespace-nowrap">${{ item.price }}</td>
-            <td class="px-6 py-4 whitespace-nowrap">${{ item.price * item.quantity }}</td>
+            <td class="px-6 py-4 whitespace-nowrap">${{ product.price }}</td>
+            <td class="px-6 py-4 whitespace-nowrap">${{ product.price * product.quantity }}</td>
             <td class="px-6 py-4 whitespace-nowrap">
-              <i @click="removeFromCart(item)" class="bi bi-cart-x cursor-pointer text-red-500"></i>
+              <i @click="removeFromCart(product)" class="bi bi-cart-x cursor-pointer text-red-500"></i>
             </td>
           </tr>
           <tr>
@@ -50,6 +50,6 @@
   // Destructure the store methods and properties
   const { cartItems, incrementQ, decrementQ, removeFromCart } = store;
   </script>
-
+  
 <style>
 </style>
