@@ -30,7 +30,7 @@
 
 <script>
 import { ref, onMounted } from 'vue';
-import { useShoppingStore } from '../stores/stores';
+import { useShoppingStore } from '../stores/stores'; // Ensure correct path to your store
 
 export default {
   name: 'ProductGrid',
@@ -42,6 +42,7 @@ export default {
   },
   setup(props) {
     const favorites = ref([]);
+    const shoppingStore = useShoppingStore(); // Initialize the store
 
     onMounted(() => {
       const storedFavorites = localStorage.getItem('favorites');
@@ -64,13 +65,17 @@ export default {
       return favorites.value.includes(productId);
     };
 
+    const addToCart = (productId) => {
+      shoppingStore.addToCart(productId); // Example action, replace with actual store action
+    };
+
     return {
       toggleFavorite,
-      isFavorite
+      isFavorite,
+      addToCart
     };
   }
 };
-const data = useShoppingStore();
 </script>
 
 <style>

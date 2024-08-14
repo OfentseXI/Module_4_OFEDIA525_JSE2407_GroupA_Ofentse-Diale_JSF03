@@ -89,4 +89,4 @@ export const useShoppingStore = defineStore('shopping', {
       })
     }
   }
-})
+});
