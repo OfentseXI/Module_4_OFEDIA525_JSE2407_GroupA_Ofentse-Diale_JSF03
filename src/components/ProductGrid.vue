@@ -42,7 +42,7 @@ export default {
   },
   setup(props) {
     const favorites = ref([]);
-    const shoppingStore = useShoppingStore(); 
+    const shoppingStore = useShoppingStore();
 
     onMounted(() => {
       const storedFavorites = localStorage.getItem('favorites');
