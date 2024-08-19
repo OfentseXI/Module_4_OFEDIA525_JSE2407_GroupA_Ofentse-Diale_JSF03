@@ -44,8 +44,7 @@
   </template>
   
   <script setup>
-  import { useShoppingStore } from '../stores/stores';
-  import { computed } from 'vue';
+  import { ref, onMounted, computed } from 'vue';
   
   const store = useShoppingStore();
   
