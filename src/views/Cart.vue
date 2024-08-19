@@ -78,6 +78,10 @@
       localStorage.setItem('cart', JSON.stringify(cartItems.value));
     }
   };
+
+  const total = computed(() => {
+    return cartItems.value.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  });
   </script>
   
   <style scoped>
