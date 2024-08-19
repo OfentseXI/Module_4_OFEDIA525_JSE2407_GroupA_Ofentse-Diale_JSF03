@@ -1,7 +1,6 @@
 <template>
-  
     <div class="container mx-auto p-6">
-      <div class="mt-20 flex justify-between items-center flex-wrap mb-4">
+      <div class="mt-4 flex justify-between items-center flex-wrap mb-4">
         <select v-model="selectedCategory" class="border p-2 rounded mb-2 sm:mb-0">
           <option value="">All Categories</option>
           <option v-for="category in categories" :key="category" :value="category">
