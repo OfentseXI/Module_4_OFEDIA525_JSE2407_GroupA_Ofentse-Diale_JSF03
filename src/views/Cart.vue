@@ -55,11 +55,13 @@
     }
   });
   
-  // Computed properties to access store state and methods
-  const cartItems = computed(() => store.cartItems);
-  const incrementQ = store.incrementQ;
-  const decrementQ = store.decrementQ;
-  const removeFromCart = store.removeFromCart;
+  const incrementQ = (product) => {
+    const index = cartItems.value.findIndex(item => item.id === product.id);
+    if (index !== -1) {
+      cartItems.value[index].quantity += 1;
+      localStorage.setItem('cart', JSON.stringify(cartItems.value));
+    }
+  };
   </script>
   
   <style scoped>
