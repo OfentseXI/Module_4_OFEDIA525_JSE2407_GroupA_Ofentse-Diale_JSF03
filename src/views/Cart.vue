@@ -62,6 +62,14 @@
       localStorage.setItem('cart', JSON.stringify(cartItems.value));
     }
   };
+
+  const decrementQ = (product) => {
+    const index = cartItems.value.findIndex(item => item.id === product.id);
+    if (index !== -1 && cartItems.value[index].quantity > 1) {
+      cartItems.value[index].quantity -= 1;
+      localStorage.setItem('cart', JSON.stringify(cartItems.value));
+    }
+  };
   </script>
   
   <style scoped>
