@@ -46,7 +46,14 @@
   <script setup>
   import { ref, onMounted, computed } from 'vue';
   
-  const store = useShoppingStore();
+  const cartItems = ref([]);
+
+  onMounted(() => {
+    const storedCart = localStorage.getItem('cart');
+    if (storedCart) {
+      cartItems.value = JSON.parse(storedCart);
+    }
+  });
   
   // Computed properties to access store state and methods
   const cartItems = computed(() => store.cartItems);
