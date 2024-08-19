@@ -65,8 +65,18 @@ export default {
       return favorites.value.includes(productId);
     };
 
-    const addToCart = (product) => {
-      shoppingStore.addToCart(product);
+    // const addToCart = (productId) => {
+      // shoppingStore.addToCart(productId);
+    // };
+
+      const addToCart = (productId) => {
+      const index = shoppingStore.value.indexOf(productId);
+      if (index > -1) {
+        shoppingStore.value.splice(index, 1);
+      } else {
+        shoppingStore.value.push(productId);
+      }
+      localStorage.setItem('cart', JSON.stringify(shoppingStore.value));
     };
 
     return {
