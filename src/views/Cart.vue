@@ -70,6 +70,14 @@
       localStorage.setItem('cart', JSON.stringify(cartItems.value));
     }
   };
+
+  const removeFromCart = (product) => {
+    const index = cartItems.value.findIndex(item => item.id === product.id);
+    if (index !== -1) {
+      cartItems.value.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cartItems.value));
+    }
+  };
   </script>
   
   <style scoped>
