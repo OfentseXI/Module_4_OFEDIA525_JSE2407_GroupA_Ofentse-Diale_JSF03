@@ -29,7 +29,85 @@
 </template>
 
 <script>
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
+
+export default {
+  name: 'Wishlist',
+  setup() {
+    const favoriteProducts = ref([]);
+
+    // Function to load favorite product IDs from localStorage and fetch corresponding products
+    const loadFavorites = async () => {
+      const storedFavorites = localStorage.getItem('favorites');
+      if (storedFavorites) {
+        const favoriteIds = JSON.parse(storedFavorites);
+        favoriteProducts.value = await fetchProductsByIds(favoriteIds);
+      }
+    };
+
+    // Function to fetch products by their IDs
+    const fetchProductsByIds = async (ids) => {
+      try {
+        const response = await axios.get('https://fakestoreapi.com/products');
+        const allProducts = response.data;
+        // Filter products to match the favorite IDs
+        return allProducts.filter(product => ids.includes(product.id));
+      } catch (error) {
+        console.error('Failed to fetch products:', error);
+        return [];
+      }
+    };
+
+    // Function to toggle the favorite status of a product
+    const toggleFavorite = (productId) => {
+      let favoriteIds = JSON.parse(localStorage.getItem('favorites')) || [];
+
+      if (favoriteIds.includes(productId)) {
+        favoriteIds = favoriteIds.filter(id => id !== productId);
+      } else {
+        favoriteIds.push(productId);
+      }
+
+      localStorage.setItem('favorites', JSON.stringify(favoriteIds));
+      loadFavorites();
+    };
+
+    // Function to check if a product is in the favorites list
+    const isFavorite = (productId) => {
+      const favoriteIds = JSON.parse(localStorage.getItem('favorites')) || [];
+      return favoriteIds.includes(productId);
+    };
+
+    // Function to add a product to the cart
+    const addToCart = (product) => {
+      let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+      const index = cartItems.findIndex(item => item.id === product.id);
+      if (index === -1) {
+        cartItems.push({ ...product, quantity: 1 });
+      } else {
+        cartItems[index].quantity += 1;
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cartItems));
+    };
+
+    // Load favorites when the component is mounted
+    onMounted(() => {
+      loadFavorites();
+    });
+
+    return {
+      favoriteProducts,
+      toggleFavorite,
+      isFavorite,
+      addToCart
+    };
+  }
+};
 </script>
+
 
 <style>
 </style>

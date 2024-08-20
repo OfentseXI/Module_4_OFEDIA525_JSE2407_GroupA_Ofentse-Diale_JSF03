@@ -30,10 +30,9 @@
           <option value="desc">Highest to Lowest</option>
         </select>
       </div>
-  
-      <Loading v-if="loading" />
-      <ProductGrid :products="filteredProducts" v-else />
-    </div>
+        <Loading v-if="loading" />
+        <ProductGrid :products="filteredProducts" v-else />
+      </div>
   </template>
   
   <script>
