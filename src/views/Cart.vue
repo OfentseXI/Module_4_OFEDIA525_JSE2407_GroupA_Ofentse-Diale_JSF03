@@ -16,7 +16,7 @@
           <tr v-for="product in cartItems" :key="product.id">
             <td class="px-6 py-4 whitespace-nowrap">{{ product.id }}</td>
             <td class="px-6 py-4 whitespace-nowrap">
-              <img :src="product.image" class="rounded w-15 h-15 object-cover" :alt="product.title" />
+              <img :src="product.image" class="rounded w-20 h-20 object-contain" :alt="product.title" />
             </td>
             <td class="px-6 py-4 whitespace-nowrap">{{ product.title }}</td>
             <td class="px-6 py-4 whitespace-nowrap">

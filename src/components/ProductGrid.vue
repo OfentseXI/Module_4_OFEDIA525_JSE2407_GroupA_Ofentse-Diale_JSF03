@@ -1,6 +1,6 @@
 <template>
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-    <div v-for="product in products" :key="product.id" class="card-container bg-white shadow-md rounded-lg overflow-hidden border p-4 cursor-pointer hover:border-black hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
+    <div v-for="product in products" :key="product.id" class="card-container bg-white shadow-md rounded-lg overflow-hidden border p-4 cursor-pointer hover:shadow-lg hover:-translate-y-1 hover:scale-105 duration-300 flex flex-col h-full">
       <router-link :to="`/product/${product.id}`" class="flex justify-center items-center">
         <img :src="product.image" :alt="product.title" class="w-400px h-48 object-cover mb-5 rounded" />
       </router-link>
