@@ -48,6 +48,7 @@ export default {
   setup(props) {
     const favorites = ref([]);
     const cart = ref([]);
+    const compareList = ref([]);
 
     onMounted(() => {
       const storedFavorites = localStorage.getItem('favorites');
