@@ -6,7 +6,7 @@
     </div>
     <!-- Display loading state while data is being fetched -->
     <div v-else-if="loading" class="flex justify-center p-5">
-      <LoadingState />
+      <Loading />
     </div>
     <!-- Display product details if available -->
     <div v-else class="grid space-y-5">
@@ -36,6 +36,7 @@
 
 <script>
 import { ref, onMounted } from 'vue';
+import Loading from '../components/Loading.vue'
 
 /**
  * @fileoverview This component fetches and displays the details of a single product based on its ID.
@@ -43,7 +44,9 @@ import { ref, onMounted } from 'vue';
 
 export default {
   name: 'ProductDetail',
-  
+  components: {
+    Loading,
+  },
   /**
    * @type {Object}
    * @property {string | number} id - The ID of the product to display details for.

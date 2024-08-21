@@ -152,12 +152,16 @@ export default {
       let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
       const index = cartItems.findIndex(item => item.id === product.id);
       if (index === -1) {
-        cartItems.push({ ...product, quantity: 1 });
+        cart.value.push({ ...product, quantity: 1 });
+        store.showNotification('success', 'Your item has been added to the cart');
       } else {
-        cartItems[index].quantity += 1;
+        cart.value[index].quantity += 1;
+        store.showNotification('success', 'Your item has been updated');
       }
-      localStorage.setItem('cart', JSON.stringify(cartItems));
+
+      localStorage.setItem('cart', JSON.stringify(cart.value));
     };
+    
 
     onMounted(() => {
       loadFavorites();
