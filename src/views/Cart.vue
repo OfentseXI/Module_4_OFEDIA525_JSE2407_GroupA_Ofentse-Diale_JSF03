@@ -54,11 +54,8 @@
   <script setup>
   import { ref, onMounted, computed } from 'vue';
   import Swal from 'sweetalert2';
-  import { useShoppingStore } from '../stores/stores';
-
   
   const cartItems = ref([]);
-  const store = useShoppingStore
 
   onMounted(() => {
     const storedCart = localStorage.getItem('cart');
