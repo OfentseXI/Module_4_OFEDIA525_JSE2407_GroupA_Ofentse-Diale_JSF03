@@ -7,6 +7,7 @@
            </div> 
         </a>  
         <div class="hidden md:flex">
+          <a href="/compare">compare</a>
           <a href="/wishlist" class="mr-4 hover:underline">wishlist</a>
           <a href="/cart" class="mr-4 hover:underline">cart</a>
           <a v-if="!isAuthenticated" href="/login" class="mr-4 hover:underline">Login</a>
@@ -29,10 +30,10 @@
           </svg>
         </button>
       </div>
-      <div v-if="open" class="md:hidden mt-4 bg-slate-500">
-        <a href="/wishlist" class="block p-2 hover:bg-slate-500">wishlist</a>
-        <a href="/" class="block p-2 hover:bg-slate-500"></a>
-        <a href="./" class="block p-2 hover:bg-slate-500">
+      <div v-if="open" class="md:hidden mt-4">
+        <a href="/wishlist" class="block p-2">wishlist</a>
+        <a href="/" class="block p-2 "></a>
+        <a href="./" class="block p-2 ">
           <svg
             width="32px"
             height="32px"
@@ -66,7 +67,7 @@
             />
           </svg>
         </a>
-        <a href="./" class="block p-2 hover:bg-pink-400"><button>Login</button></a>
+        <a href="./" class="block p-2"><button>Login</button></a>
       </div>
     </header>
   </template>

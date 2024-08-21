@@ -11,6 +11,7 @@ const routes = [
   { path: '/product/:id', name:'product', component: ProductDetail, props: true, meta: { requiresAuth: true } },
   { path: '/wishlist', name:'wishlist', component: Wishlist },
   { path: '/cart', name:'cart', component: Cart }
+  { path: '/compare', name:'compare', component: CompareList}
 ];
 
 const router = createRouter({
