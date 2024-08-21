@@ -161,12 +161,13 @@ export default {
 
       localStorage.setItem('cart', JSON.stringify(cart.value));
     };
-    
 
     onMounted(() => {
       loadFavorites();
       fetchCategories();
     });
+
+
 
     return {
       favoriteProducts,
