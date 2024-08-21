@@ -32,16 +32,6 @@
     </div>
     
     <Loading v-if="loading" />
-
-    <div class="flex justify-end mb-4">
-      <button
-        @click="clearFavorites"
-        v-if="favoriteProducts.length > 0"
-        class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75 transition duration-200"
-      >
-        Clear Favorites
-      </button>
-    </div>
     
     <div v-if="favoriteProducts.length === 0" class="text-center text-gray-500">
       Your wishlist is empty.
@@ -73,6 +63,15 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="flex mb-4 my-4">
+      <button
+        @click="clearFavorites"
+        v-if="favoriteProducts.length > 0"
+        class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75 transition duration-200"
+      >
+        Clear Favorites
+      </button>
     </div>
   </div>
 </template>
