@@ -1,4 +1,5 @@
 <template>
+  <div v-if="isLoggedIn">
   <div class="m-10 relative p-4 bg-white shadow-md rounded-lg overflow-hidden">
     <table class="min-w-full divide-y divide-gray-200 my-4">
       <thead class="bg-gray-50">
@@ -53,13 +54,16 @@
     </div>
     <p v-else class="text-gray-500 my-2 text-center">Your cart is empty.</p>
   </div>
+</div>
 </template>
 
 <script setup>
 import { ref, onMounted, computed } from 'vue';
 import Swal from 'sweetalert2';
+import { useStore } from 'vuex';
 
 const cartItems = ref([]);
+const store = useStore();
 
 onMounted(() => {
   const storedCart = localStorage.getItem('cart');
@@ -104,6 +108,8 @@ const clearCart = () => {
 const total = computed(() => {
   return cartItems.value.reduce((acc, item) => acc + item.price * item.quantity, 0);
 });
+
+const isLoggedIn = computed(() => store.getters.isLoggedIn);
 </script>
 
 <style scoped>
