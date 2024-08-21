@@ -22,7 +22,12 @@
             class="bg-blue-900 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-[#DAA520] focus:ring-opacity-75 transition duration-200">
             Add To Cart
           </button>
-        </div>
+        </div> 
+        <button 
+            @click=""
+            class="bg-blue-900 hover:bg-blue-300 text-white mt-6 w-[80%] mx-auto font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-[#DAA520] focus:ring-opacity-75 transition duration-200 text-center">
+            Compare
+        </button>
       </div>
     </div>
   </div>

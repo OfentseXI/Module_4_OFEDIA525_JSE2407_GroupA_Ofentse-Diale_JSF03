@@ -52,23 +52,15 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed, inject } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref, onMounted, computed } from 'vue';
 import Swal from 'sweetalert2';
 
-const isAuthenticated = inject('isAuthenticated');
 const cartItems = ref([]);
-const router = useRouter();
 
 onMounted(() => {
-  if (!isAuthenticated.value) {
-    localStorage.setItem('redirectPath', router.currentRoute.value.fullPath);
-    router.push('/login');
-  } else {
-    const storedCart = localStorage.getItem('cart');
-    if (storedCart) {
-      cartItems.value = JSON.parse(storedCart);
-    }
+  const storedCart = localStorage.getItem('cart');
+  if (storedCart) {
+    cartItems.value = JSON.parse(storedCart);
   }
 });
 
@@ -110,4 +102,6 @@ const total = computed(() => {
 });
 </script>
 
-
+<style scoped>
+/* Add any scoped styles here */
+</style>
