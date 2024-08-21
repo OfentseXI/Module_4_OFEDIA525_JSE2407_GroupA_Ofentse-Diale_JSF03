@@ -39,15 +39,13 @@
   import { ref, onMounted, computed } from 'vue';
   import Loading from '../components/Loading.vue';
   import ProductGrid from '../components/ProductGrid.vue';
-  import { useShoppingStore } from '../stores/stores';
-
+  
   export default {
     components: {
       Loading,
       ProductGrid
     },
     setup() {
-      const productStore = useShoppingStore();
       const products = ref([]);
       const categories = ref([]);
       const searchQuery = ref('');
@@ -96,18 +94,18 @@
       });
   
       onMounted(() => {
-        productStore.fetchProducts();
-        productStore.fetchCategories();
+        fetchProducts();
+        fetchCategories();
       });
   
       return {
-        products: computed(() => productStore.filteredProducts),
-        categories: computed(() => productStore.categories),
-        searchQuery: productStore.searchQuery,
-        selectedCategory: productStore.selectedCategory,
-        sortOrder: productStore.sortOrder,
-        searchProducts: productStore.searchProducts,
+        products,
+        categories,
+        searchQuery,
+        selectedCategory,
+        sortOrder,
         loading,
+        searchProducts,
         filteredProducts
       };
     }
