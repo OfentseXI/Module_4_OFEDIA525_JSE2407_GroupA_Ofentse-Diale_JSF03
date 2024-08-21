@@ -6,6 +6,10 @@ export const useShoppingStore = defineStore('shopping', {
   state: () => ({
     products: [],
     cartItems: [],
+    categories: [],
+    searchQuery: '',
+    selectedCategory: '',
+    sortOrder: '',
   }),
   getters: {
     countCartItems: (state) => state.cartItems.length,
@@ -21,6 +25,12 @@ export const useShoppingStore = defineStore('shopping', {
         console.error('Failed to fetch products:', error);
       }
     },
+
+    async fetchCategories() {
+      const response = await fetch('https://fakestoreapi.com/products/categories');
+      this.categories = await response.json();
+    },
+
     // Add an item to the cart
     addToCart(item) {
       const index = this.cartItems.findIndex(product => product.id === item.id);
@@ -71,5 +81,9 @@ export const useShoppingStore = defineStore('shopping', {
         timer: 1500,
       });
     },
+  },
+
+    persist: {
+    enabled: true,
   },
 });
