@@ -32,8 +32,22 @@
     </div>
     
     <Loading v-if="loading" />
+
+    <div class="flex justify-end mb-4">
+      <button
+        @click="clearFavorites"
+        v-if="favoriteProducts.length > 0"
+        class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75 transition duration-200"
+      >
+        Clear Favorites
+      </button>
+    </div>
     
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 hover:scale-102">
+    <div v-if="favoriteProducts.length === 0" class="text-center text-gray-500">
+      Your wishlist is empty.
+    </div>
+    
+    <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       <div v-for="product in filteredProducts" :key="product.id" class="card-container bg-white shadow-md rounded-lg overflow-hidden border p-4 cursor-pointer hover:border-black hover:-translate-y-1 hover:scale-102 duration-300 flex flex-col h-full">
         <router-link :to="`/product/${product.id}`" class="flex justify-center items-center">
           <img :src="product.image" :alt="product.title" class="w-400px h-48 object-cover mb-5 rounded" />
@@ -66,6 +80,7 @@
 <script>
 import { ref, onMounted, computed } from 'vue';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import Loading from '../components/Loading.vue';
 
 export default {
@@ -152,22 +167,30 @@ export default {
       let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
       const index = cartItems.findIndex(item => item.id === product.id);
       if (index === -1) {
-        cart.value.push({ ...product, quantity: 1 });
-        store.showNotification('success', 'Your item has been added to the cart');
+        cartItems.push({ ...product, quantity: 1 });
       } else {
-        cart.value[index].quantity += 1;
-        store.showNotification('success', 'Your item has been updated');
+        cartItems[index].quantity += 1;
       }
+      localStorage.setItem('cart', JSON.stringify(cartItems));
+    };
 
-      localStorage.setItem('cart', JSON.stringify(cart.value));
+    const clearFavorites = () => {
+      favoriteProducts.value = [];
+      localStorage.removeItem('favorites');
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Cleared!',
+        text: 'Your wishlist has been cleared.',
+        timer: 1500,
+        showConfirmButton: false,
+      });
     };
 
     onMounted(() => {
       loadFavorites();
       fetchCategories();
     });
-
-
 
     return {
       favoriteProducts,
@@ -180,8 +203,9 @@ export default {
       filteredProducts,
       toggleFavorite,
       isFavorite,
-      addToCart
+      addToCart,
+      clearFavorites,
     };
-  }
+  },
 };
 </script>

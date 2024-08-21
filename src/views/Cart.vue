@@ -30,7 +30,7 @@
             <i @click="removeFromCart(product)" class="bi bi-cart-x cursor-pointer text-red-500"></i>
           </td>
         </tr>
-        <tr>
+        <tr v-if="cartItems.length > 0">
           <th colSpan="3" class="px-6 py-4 text-center text-gray-700">Total</th>
           <td colSpan="3" class="px-6 py-4 text-center">
             <span class="bg-red-500 text-white rounded-full px-3 py-1">
@@ -40,14 +40,18 @@
         </tr>
       </tbody>
     </table>
-    <div class="flex flex-row justify-between items-center gap-4">
-      <button @click="clearCart" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-[#DAA520] focus:ring-opacity-75 transition duration-200">
+    <div v-if="cartItems.length > 0" class="flex flex-row justify-between items-center gap-4">
+      <button 
+        @click="clearCart" 
+        class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-[#DAA520] focus:ring-opacity-75 transition duration-200">
         CLEAR CART
       </button>
-      <button class="bg-blue-800 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-[#DAA520] focus:ring-opacity-75 transition duration-200">
+      <button 
+        class="bg-blue-800 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-[#DAA520] focus:ring-opacity-75 transition duration-200">
         CHECK OUT
       </button>
     </div>
+    <p v-else class="text-gray-500 my-2 text-center">Your cart is empty.</p>
   </div>
 </template>
 
