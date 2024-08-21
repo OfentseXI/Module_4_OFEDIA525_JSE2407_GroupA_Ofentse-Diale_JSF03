@@ -35,5 +35,23 @@
 </template>  
 
 <script>
+import { ref, onMounted } from 'vue';
 
+export default {
+  name: 'ProductComparison',
+  setup() {
+    const compareList = ref([]);
+
+    onMounted(() => {
+      const storedCompareList = localStorage.getItem('compareList');
+      if (storedCompareList) {
+        compareList.value = JSON.parse(storedCompareList);
+      }
+    });
+
+    return {
+      compareList
+    };
+  }
+};
 </script>
