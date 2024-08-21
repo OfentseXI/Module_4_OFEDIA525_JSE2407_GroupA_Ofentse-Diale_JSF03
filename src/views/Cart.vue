@@ -53,9 +53,12 @@
   
   <script setup>
   import { ref, onMounted, computed } from 'vue';
+  import Swal from 'sweetalert2';
+  import { useShoppingStore } from '../stores/stores';
 
   
   const cartItems = ref([]);
+  const store = useShoppingStore
 
   onMounted(() => {
     const storedCart = localStorage.getItem('cart');
@@ -80,13 +83,14 @@
     }
   };
 
-  const removeFromCart = (product) => {
-    const index = cartItems.value.findIndex(item => item.id === product.id);
-    if (index !== -1) {
-      cartItems.value.splice(index, 1);
-      localStorage.setItem('cart', JSON.stringify(cartItems.value));
-    }
-  };
+const removeFromCart = (product) => {
+  const index = cartItems.value.findIndex(item => item.id === product.id);
+  if (index !== -1) {
+    cartItems.value.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cartItems.value));
+    Swal.fire('Success', 'Item has been removed from the cart', 'success');
+  }
+};
 
   const total = computed(() => {
     return cartItems.value.reduce((acc, item) => acc + item.price * item.quantity, 0);
