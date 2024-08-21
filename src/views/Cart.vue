@@ -53,6 +53,7 @@
   
   <script setup>
   import { ref, onMounted, computed } from 'vue';
+
   
   const cartItems = ref([]);
 
