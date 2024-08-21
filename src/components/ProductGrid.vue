@@ -1,6 +1,6 @@
 <template>
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-    <div v-for="product in products" :key="product.id" class="card-container bg-white shadow-md rounded-lg overflow-hidden border p-4 cursor-pointer hover:shadow-lg hover:-translate-y-1 hover:scale-105 duration-300 flex flex-col h-full">
+    <div v-for="product in products" :key="product.id" class="card-container bg-white shadow-md rounded-lg overflow-hidden border p-4 cursor-pointer hover:shadow-lg hover:-translate-y-1 hover:scale-102 duration-300 flex flex-col h-full">
       <router-link :to="`/product/${product.id}`" class="flex justify-center items-center">
         <img :src="product.image" :alt="product.title" class="w-400px h-48 object-cover mb-5 rounded" />
       </router-link>
@@ -30,6 +30,8 @@
 
 <script>
 import { ref, onMounted } from 'vue';
+import Swal from 'sweetalert2';
+import { useShoppingStore } from '../stores/stores';
 
 export default {
   name: 'ProductGrid',
@@ -68,15 +70,20 @@ export default {
       return favorites.value.includes(productId);
     };
 
-    const addToCart = (product) => {
-      const index = cart.value.findIndex(item => item.id === product.id);
-      if (index === -1) {
-        cart.value.push({ ...product, quantity: 1 });
-      } else {
-        cart.value[index].quantity += 1;
-      }
-      localStorage.setItem('cart', JSON.stringify(cart.value));
-    };
+  const addToCart = (product) => {
+  const index = cart.value.findIndex(item => item.id === product.id);
+  const store = useShoppingStore();
+
+  if (index === -1) {
+    cart.value.push({ ...product, quantity: 1 });
+    store.showNotification('success', 'Your item has been added to the cart');
+  } else {
+    cart.value[index].quantity += 1;
+    store.showNotification('success', 'Your item has been updated');
+  }
+
+  localStorage.setItem('cart', JSON.stringify(cart.value));
+};
 
     return {
       toggleFavorite,
