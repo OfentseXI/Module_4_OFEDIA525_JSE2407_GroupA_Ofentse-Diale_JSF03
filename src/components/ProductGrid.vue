@@ -24,7 +24,7 @@
           </button>
         </div> 
         <button 
-            @click=""
+            @click="addToCompare(product)"
             class="bg-blue-900 hover:bg-blue-300 text-white mt-6 w-[80%] mx-auto font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-[#DAA520] focus:ring-opacity-75 transition duration-200 text-center">
             Compare
         </button>
@@ -58,6 +58,10 @@ export default {
       if (storedCart) {
         cart.value = JSON.parse(storedCart);
       }
+      const storedCompareList = localStorage.getItem('compareList');
+      if (storedCompareList) {
+        compareList.value = JSON.parse(storedCompareList);
+      }
     });
 
     const toggleFavorite = (productId) => {
@@ -89,10 +93,19 @@ export default {
   localStorage.setItem('cart', JSON.stringify(cart.value));
 };
 
+const addToCompare = (product) => {
+      const index = compareList.value.findIndex(item => item.id === product.id);
+      if (index === -1) {
+        compareList.value.push(product);
+        localStorage.setItem('compareList', JSON.stringify(compareList.value));
+      }
+    };
+
     return {
       toggleFavorite,
       isFavorite,
-      addToCart
+      addToCart,
+      addToCompare
     };
   }
 };
