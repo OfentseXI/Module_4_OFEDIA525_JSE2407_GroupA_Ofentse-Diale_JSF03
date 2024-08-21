@@ -38,7 +38,7 @@
                     </button>
                     <button 
                         @click="removeFromCompareList(index)"
-                        class="bg-blue-900 hover:bg-blue-300 text-white font-bold py-1 px-2 rounded my-4">
+                        class="bg-blue-900 hover:bg-blue-300 text-white font-bold py-1 px-2 rounded my-4 mx-2">
                         Add to cart
                     </button>
                 </td>
@@ -48,7 +48,7 @@
         <button 
             v-if="compareList.length > 0"
             @click="clearCompareList"
-            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mb-4">
+            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mb-4 my-4">
             Clear Compare List
         </button>
         <p v-else class="text-gray-500 my-2">No products to compare. Please add products to the comparison list.</p>
