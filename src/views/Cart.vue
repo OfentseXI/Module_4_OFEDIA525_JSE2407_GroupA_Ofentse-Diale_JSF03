@@ -41,8 +41,8 @@
         </tbody>
       </table>
       <div class="flex flex-row justify-between items-center gap-4">
-        <button class=" bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-[#DAA520] focus:ring-opacity-75 transition duration-200">
-            CLEAR CART
+        <button @click="clearCart" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-[#DAA520] focus:ring-opacity-75 transition duration-200">
+          CLEAR CART
         </button>
         <button class=" bg-blue-800 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-[#DAA520] focus:ring-opacity-75 transition duration-200">
           CHECK OUT
@@ -89,7 +89,12 @@ const removeFromCart = (product) => {
   }
 };
 
-  const total = computed(() => {
+const clearCart = () => {
+  cartItems.value = [];
+  localStorage.removeItem('cart');
+};
+
+const total = computed(() => {
     return cartItems.value.reduce((acc, item) => acc + item.price * item.quantity, 0);
   });
   </script>
