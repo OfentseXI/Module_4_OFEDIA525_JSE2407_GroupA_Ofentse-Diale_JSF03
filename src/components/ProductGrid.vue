@@ -30,7 +30,6 @@
 
 <script>
 import { ref, onMounted } from 'vue';
-import Swal from 'sweetalert2';
 import { useShoppingStore } from '../stores/stores';
 
 export default {
