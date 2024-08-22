@@ -46,25 +46,36 @@ export default {
     }
   },
   setup(props) {
+    // Initialize reactive references
     const favorites = ref([]);
     const cart = ref([]);
     const compareList = ref([]);
 
+    // Lifecycle hook to load data from localStorage when component is mounted
     onMounted(() => {
+      // Load favorites from localStorage
       const storedFavorites = localStorage.getItem('favorites');
       if (storedFavorites) {
         favorites.value = JSON.parse(storedFavorites);
       }
+
+      // Load cart from localStorage
       const storedCart = localStorage.getItem('cart');
       if (storedCart) {
         cart.value = JSON.parse(storedCart);
       }
+
+      // Load compare list from localStorage
       const storedCompareList = localStorage.getItem('compareList');
       if (storedCompareList) {
         compareList.value = JSON.parse(storedCompareList);
       }
     });
 
+    /**
+     * Toggle a product's favorite status
+     * @param {number} productId - The ID of the product to toggle
+     */
     const toggleFavorite = (productId) => {
       const index = favorites.value.indexOf(productId);
       if (index > -1) {
@@ -75,26 +86,39 @@ export default {
       localStorage.setItem('favorites', JSON.stringify(favorites.value));
     };
 
+    /**
+     * Check if a product is in the favorites list
+     * @param {number} productId - The ID of the product to check
+     * @returns {boolean} True if the product is a favorite, false otherwise
+     */
     const isFavorite = (productId) => {
       return favorites.value.includes(productId);
     };
 
-  const addToCart = (product) => {
-  const index = cart.value.findIndex(item => item.id === product.id);
-  const store = useShoppingStore();
+    /**
+     * Add a product to the cart or increment its quantity if already present
+     * @param {Object} product - The product to add to the cart
+     */
+    const addToCart = (product) => {
+      const index = cart.value.findIndex(item => item.id === product.id);
+      const store = useShoppingStore();
 
-  if (index === -1) {
-    cart.value.push({ ...product, quantity: 1 });
-    store.showNotification('success', 'Your item has been added to the cart');
-  } else {
-    cart.value[index].quantity += 1;
-    store.showNotification('success', 'Your item has been updated');
-  }
+      if (index === -1) {
+        cart.value.push({ ...product, quantity: 1 });
+        store.showNotification('success', 'Your item has been added to the cart');
+      } else {
+        cart.value[index].quantity += 1;
+        store.showNotification('success', 'Your item has been updated');
+      }
 
-  localStorage.setItem('cart', JSON.stringify(cart.value));
-};
+      localStorage.setItem('cart', JSON.stringify(cart.value));
+    };
 
-const addToCompare = (product) => {
+    /**
+     * Add a product to the compare list if not already present
+     * @param {Object} product - The product to add to the compare list
+     */
+    const addToCompare = (product) => {
       const index = compareList.value.findIndex(item => item.id === product.id);
       if (index === -1) {
         compareList.value.push(product);
@@ -102,6 +126,7 @@ const addToCompare = (product) => {
       }
     };
 
+    // Return the methods to be used in the template
     return {
       toggleFavorite,
       isFavorite,

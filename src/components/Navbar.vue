@@ -74,28 +74,36 @@
         <a href="./" class="block p-2"><button>Login</button></a>
       </div>
     </header>
-  </template>
-  
-  <script>
-  import { ref } from 'vue';
-  
-  export default {
-    name: 'Navbar',
-    setup() {
-      // Reactive state for menu open/close
-      const open = ref(false);
-  
-      // Toggle menu function
-      const toggleMenu = () => {
-        open.value = !open.value;
-      };
-  
-      return {
-        open,
-        toggleMenu,
-      };
-    },
-  };
-  </script>
-  
-  
+</template>
+
+<script>
+    import { ref } from 'vue';
+
+    /**
+     * @component Navbar
+     * @description A navigation bar component with a toggle menu functionality.
+     */
+    export default {
+      name: 'Navbar',
+      setup() {
+        /**
+         * Reactive state for menu open/close status
+         * @type {import('vue').Ref<boolean>}
+         */
+        const open = ref(false);
+
+        /**
+         * Toggles the menu open/close state
+         * @function
+         */
+        const toggleMenu = () => {
+          open.value = !open.value;
+        };
+
+        return {
+          open,
+          toggleMenu,
+        };
+      },
+    };
+</script>
