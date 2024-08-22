@@ -123,7 +123,3 @@ const total = computed(() => {
 
 const isLoggedIn = computed(() => store.getters.isLoggedIn);
 </script>
-
-<style scoped>
-/* Add any scoped styles here */
-</style>

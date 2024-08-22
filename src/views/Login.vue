@@ -37,10 +37,12 @@
 </template>
 
 <script>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref, onMounted } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
+import { useStore } from 'vuex';
 
 export default {
+  name: "Login",
   setup() {
     const username = ref('');
     const password = ref('');
@@ -48,6 +50,8 @@ export default {
     const loading = ref(false);
     const error = ref(null);
     const router = useRouter();
+    const store = useStore();
+    const route = useRoute();
 
     const togglePasswordVisibility = () => {
       passwordFieldType.value = passwordFieldType.value === 'password' ? 'text' : 'password';
@@ -83,14 +87,25 @@ export default {
 
         localStorage.setItem('jwt', data.token);
 
-        const redirectPath = localStorage.getItem('redirectPath') || '/';
-        router.push(redirectPath);
-      } catch (err) {
+        const redirectPath = route.query.redirect || "/";
+        setTimeout(() => {
+          router.push(redirectPath);
+      }, 1000);
+      }
+       catch (err) {
         error.value = 'Login failed. Please check your credentials.';
       } finally {
         loading.value = false;
       }
     };
+
+    onMounted(() => {
+      const token = localStorage.getItem("authToken");
+      if (token) {
+        alert("You are already logged in.");
+        router.push("/");
+      }
+    });
 
     return {
       username,
