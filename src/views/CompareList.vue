@@ -30,15 +30,15 @@
                 <td class="py-4 px-6 border-b border-gray-200">
                   {{ product.category }}
                 </td>
-                <td class="py-4 px-6 border-b border-gray-200 items-center">
+                <td class="py-4 px-6 border-b border-gray-200 justify-center">
                     <button 
                         @click="removeFromCompareList(index)"
-                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded my-4">
+                        class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded my-4 justify-center">
                         Remove
                     </button>
                     <button 
                         @click="addToCart(product)"
-                        class="bg-blue-900 hover:bg-blue-300 text-white font-bold py-1 px-2 rounded my-4 mx-2">
+                        class="bg-blue-900 hover:bg-blue-300 text-white font-bold py-1 px-2 rounded my-4 mx-2 justify-center">
                         Add to cart
                     </button>
                 </td>

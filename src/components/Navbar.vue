@@ -8,7 +8,12 @@
         </a>  
         <div class="hidden md:flex">
           <a href="/compare" class="mr-4 hover:underline">compare</a>
-          <a href="/wishlist" class="mr-4 hover:underline">wishlist</a>
+          <a href="/wishlist" class="mr-4 hover:underline relative">
+            wishlist
+            <span v-if="wishlistCount > 0" class="absolute top-0 right-0 bg-red-500 text-white rounded-full text-xs px-2">
+              {{ wishlistCount }}
+            </span>
+          </a>
           <a href="/cart" class="mr-4 hover:underline">cart</a>
           <a v-if="!isAuthenticated" href="/login" class="mr-4 hover:underline">Login</a>
           <a v-else @click="logout" class="mr-4 hover:underline cursor-pointer">Logout</a>
