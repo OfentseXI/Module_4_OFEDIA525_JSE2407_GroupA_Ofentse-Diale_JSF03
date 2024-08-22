@@ -71,14 +71,21 @@
             />
           </svg>
         </a>
-        <a href="./" class="block p-2"><button>Login</button></a>
+        <a href="/login" class="block p-2"><button>Login</button>
+          <button v-if="isLoggedIn"
+          @click="logout"
+          class="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+        >
+          Logout
+        </button></a>
       </div>
     </header>
   </template>
   
   <script>
-  import { ref } from 'vue';
-  
+  import { computed, ref } from "vue";
+  import { useStore } from "vuex";
+
   export default {
     name: 'Navbar',
     setup() {
@@ -90,9 +97,17 @@
         open.value = !open.value;
       };
   
+      const isLoggedIn = computed(() => store.getters.isLoggedIn);
+
+      const logout = () => {
+        store.dispatch("logout");
+      };
+
       return {
         open,
         toggleMenu,
+        isLoggedIn,
+        logout
       };
     },
   };
