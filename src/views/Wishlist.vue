@@ -81,6 +81,7 @@ import { ref, onMounted, computed } from 'vue';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import Loading from '../components/Loading.vue';
+import { useStore } from 'vuex';
 
 export default {
   name: 'Wishlist',
@@ -166,9 +167,11 @@ export default {
       let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
       const index = cartItems.findIndex(item => item.id === product.id);
       if (index === -1) {
-        cartItems.push({ ...product, quantity: 1 });
+        cartItems.push({ ...product, quantity: 1 })
+        store.dispatch('removeFromWishlist', productId);
       } else {
         cartItems[index].quantity += 1;
+        store.dispatch('addToWishlist', productId);
       }
       localStorage.setItem('cart', JSON.stringify(cartItems));
     };
@@ -176,6 +179,7 @@ export default {
     const clearFavorites = () => {
       favoriteProducts.value = [];
       localStorage.removeItem('favorites');
+      store.dispatch('clearWishlist');
 
       Swal.fire({
         icon: 'success',

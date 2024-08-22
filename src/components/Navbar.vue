@@ -94,6 +94,7 @@
   export default {
     name: 'Navbar',
     setup() {
+      const store = useStore();
       // Reactive state for menu open/close
       const open = ref(false);
   
@@ -102,6 +103,8 @@
         open.value = !open.value;
       };
   
+      const wishlistCount = computed(() => store.getters.wishlistCount);
+
       const isLoggedIn = computed(() => store.getters.isLoggedIn);
 
       const logout = () => {
@@ -112,7 +115,8 @@
         open,
         toggleMenu,
         isLoggedIn,
-        logout
+        logout,
+        wishlistCount
       };
     },
   };
