@@ -8,12 +8,7 @@
         </a>  
         <div class="hidden md:flex">
           <a href="/compare" class="mr-4 hover:underline">compare</a>
-          <a href="/wishlist" class="mr-4 hover:underline relative">
-            wishlist
-            <span v-if="wishlistCount > 0" class="absolute top-0 right-0 bg-red-500 text-white rounded-full text-xs px-2">
-              {{ wishlistCount }}
-            </span>
-          </a>
+          <a href="/wishlist" class="mr-4 hover:underline">wishlist</a>
           <a href="/cart" class="mr-4 hover:underline">cart</a>
           <a v-if="!isAuthenticated" href="/login" class="mr-4 hover:underline">Login</a>
           <a v-else @click="logout" class="mr-4 hover:underline cursor-pointer">Logout</a>
@@ -76,25 +71,17 @@
             />
           </svg>
         </a>
-        <a href="/login" class="block p-2"><button>Login</button>
-          <button v-if="isLoggedIn"
-          @click="logout"
-          class="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
-        >
-          Logout
-        </button></a>
+        <a href="./" class="block p-2"><button>Login</button></a>
       </div>
     </header>
   </template>
   
   <script>
-  import { computed, ref } from "vue";
-  import { useStore } from "vuex";
-
+  import { ref } from 'vue';
+  
   export default {
     name: 'Navbar',
     setup() {
-      const store = useStore();
       // Reactive state for menu open/close
       const open = ref(false);
   
@@ -103,20 +90,9 @@
         open.value = !open.value;
       };
   
-      const wishlistCount = computed(() => store.getters.wishlistCount);
-
-      const isLoggedIn = computed(() => store.getters.isLoggedIn);
-
-      const logout = () => {
-        store.dispatch("logout");
-      };
-
       return {
         open,
         toggleMenu,
-        isLoggedIn,
-        logout,
-        wishlistCount
       };
     },
   };

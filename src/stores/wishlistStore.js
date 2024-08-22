@@ -1,42 +1,31 @@
-import { createStore } from 'vuex';
+import { defineStore } from 'pinia';
 
-export default createStore({
-  state: {
+export const useWishlistStore = defineStore('wishlist', {
+  state: () => ({
     wishlist: [],
-  },
+  }),
   getters: {
     wishlistCount: (state) => state.wishlist.length,
   },
-  mutations: {
-    setWishlist(state, products) {
-      state.wishlist = products;
-    },
-    addToWishlist(state, product) {
-      state.wishlist.push(product);
-    },
-    removeFromWishlist(state, productId) {
-      state.wishlist = state.wishlist.filter((p) => p.id !== productId);
-    },
-    clearWishlist(state) {
-      state.wishlist = [];
-    },
-  },
   actions: {
-    loadWishlist({ commit }) {
-      const storedWishlist = JSON.parse(localStorage.getItem('favorites')) || [];
-      commit('setWishlist', storedWishlist);
+    setWishlist(products) {
+      this.wishlist = products;
     },
-    addToWishlist({ commit }, product) {
-      commit('addToWishlist', product);
-      localStorage.setItem('favorites', JSON.stringify(state.wishlist));
+    addToWishlist(product) {
+      this.wishlist.push(product);
+      localStorage.setItem('favorites', JSON.stringify(this.wishlist));
     },
-    removeFromWishlist({ commit }, productId) {
-      commit('removeFromWishlist', productId);
-      localStorage.setItem('favorites', JSON.stringify(state.wishlist));
+    removeFromWishlist(productId) {
+      this.wishlist = this.wishlist.filter((p) => p.id !== productId);
+      localStorage.setItem('favorites', JSON.stringify(this.wishlist));
     },
-    clearWishlist({ commit }) {
-      commit('clearWishlist');
+    clearWishlist() {
+      this.wishlist = [];
       localStorage.removeItem('favorites');
+    },
+    loadWishlist() {
+      const storedWishlist = JSON.parse(localStorage.getItem('favorites')) || [];
+      this.setWishlist(storedWishlist);
     },
   },
 });
