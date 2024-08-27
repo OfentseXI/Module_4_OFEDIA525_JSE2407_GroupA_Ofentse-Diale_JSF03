@@ -78,7 +78,7 @@ export default {
       error.value = null;
 
       try {
-        const response = await fetch('https://fakestoreapi.com/users', {
+        const response = await fetch('https://fakestoreapi.com/auth/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -97,8 +97,8 @@ export default {
         console.log(data); // To view the response from the API
 
         // Store JWT token in localStorage
-        localStorage.setItem('jwt', data.token);
-
+          localStorage.setItem('jwt', data.token);
+          
         // Redirect the user to the previously stored path or home page
         const redirectPath = localStorage.getItem('redirectPath') || '/';
         router.push(redirectPath);
