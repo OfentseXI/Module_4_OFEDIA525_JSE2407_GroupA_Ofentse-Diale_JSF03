@@ -22,22 +22,24 @@ const routes = [
     name: 'product', 
     component: ProductDetail, 
     props: true, 
-    meta: { requiresAuth: true } // Requires authentication
   },
   { 
     path: '/wishlist', 
     name: 'wishlist', 
-    component: Wishlist 
+    component: Wishlist,
+    meta: { requiresAuth: true }
   },
   { 
     path: '/cart', 
     name: 'cart', 
-    component: Cart 
+    component: Cart,
+    meta: { requiresAuth: true }
   },
   { 
     path: '/compare', 
     name: 'compare', 
-    component: CompareList 
+    component: CompareList,
+    meta: { requiresAuth: true }
   }
 ];
 
