@@ -4,45 +4,59 @@
     
     <!-- Product Comparison Table -->
     <table class="min-w-full bg-white" v-if="compareList.length > 0">
-      <thead class="bg-gray-800 text-white font-bold rounded-lg">
-        <tr>
-          <th class="py-2 px-4">Image</th>
-          <th class="py-2 px-4">Title</th>
-          <th class="py-2 px-4">Rating</th>
-          <th class="py-2 px-4">Price</th>
-          <th class="py-2 px-4">Category</th>
-          <th class="py-2 px-4">Actions</th>
-        </tr>
-      </thead>
       <tbody>
-        <!-- Iterate over the compareList array to display each product -->
-        <tr v-for="(product, index) in compareList" :key="product.id">
-          <td class="py-4 px-6 border-b border-gray-200">
-            <img :src="product.image" :alt="product.title" class="w-24 h-24 object-contain rounded" />
+        <!-- Row for Images -->
+        <tr class="text-white font-bold rounded-lg">
+          <th class="py-2 px-4 text-center bg-gray-800">Image</th>
+          <td v-for="(product, index) in compareList" :key="product.id" class="py-4 px-6 border-b border-gray-200 text-center">
+            <img :src="product.image" :alt="product.title" class="w-24 h-24 object-contain rounded mx-auto" />
           </td>
-          <td class="py-4 px-6 border-b border-gray-200 font-bold">
+        </tr>
+
+        <!-- Row for Titles -->
+        <tr class="bg-gray-100">
+          <th class="py-2 px-4 text-center text-white font-bold bg-gray-800">Title</th>
+          <td v-for="(product, index) in compareList" :key="product.id" class="py-4 px-6 border-b border-gray-200 text-center font-bold">
             {{ product.title }}
           </td>
-          <td class="py-4 px-6 border-b border-gray-200">
+        </tr>
+
+        <!-- Row for Ratings -->
+        <tr>
+          <th class="py-2 px-4 text-center text-white font-bold bg-gray-800">Rating</th>
+          <td v-for="(product, index) in compareList" :key="product.id" class="py-4 px-6 border-b border-gray-200 text-center">
             {{ product.rating.rate }} ({{ product.rating.count }} reviews)
           </td>
-          <td class="py-4 px-6 border-b border-gray-200 font-bold text-gray-600">
+        </tr>
+
+        <!-- Row for Prices -->
+        <tr class="bg-gray-100">
+          <th class="py-2 px-4 text-center text-white font-bold bg-gray-800">Price</th>
+          <td v-for="(product, index) in compareList" :key="product.id" class="py-4 px-6 border-b border-gray-200 text-center font-bold text-gray-600">
             ${{ product.price }}
           </td>
-          <td class="py-4 px-6 border-b border-gray-200">
+        </tr>
+
+        <!-- Row for Categories -->
+        <tr>
+          <th class="py-2 px-4 text-center text-white font-bold bg-gray-800">Category</th>
+          <td v-for="(product, index) in compareList" :key="product.id" class="py-4 px-6 border-b border-gray-200 text-center">
             {{ product.category }}
           </td>
-          <td class="py-4 px-6 border-b border-gray-200 items-center">
-            <!-- Remove button to remove the product from comparison list -->
+        </tr>
+
+        <!-- Row for Actions -->
+        <tr class="bg-gray-100 ">
+          <th class="py-2 px-4 text-center text-white font-bold bg-gray-800">Actions</th>
+          <td v-for="(product, index) in compareList" :key="product.id" class="py-4 px-6 border-b border-gray-200 text-center">
             <button 
               @click="removeFromCompareList(index)"
-              class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded my-4">
+              class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded mb-2">
               Remove
             </button>
-            <!-- Add to cart button -->
             <button 
               @click="addToCart(product)"
-              class="bg-blue-900 hover:bg-blue-300 text-white font-bold py-1 px-2 rounded my-4 mx-2">
+              class="bg-blue-900 hover:bg-blue-300 text-white font-bold py-1 px-2 rounded mx-2">
               Add to cart
             </button>
           </td>
@@ -62,6 +76,8 @@
     <p v-else class="text-gray-500 my-2">No products to compare. Please add products to the comparison list.</p>
   </div>
 </template>
+
+
 
 <script>
 import { ref, onMounted } from 'vue';

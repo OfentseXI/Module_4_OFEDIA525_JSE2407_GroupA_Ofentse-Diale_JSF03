@@ -115,14 +115,42 @@ export default {
     };
 
     /**
-     * Add a product to the compare list if not already present
+     * Add a product to the compare list if not already present, and if the list is below the limit of 4 items
      * @param {Object} product - The product to add to the compare list
      */
     const addToCompare = (product) => {
+      if (compareList.value.length >= 4) {
+        Swal.fire({
+          icon: 'warning',
+          title: 'Limit Reached',
+          text: 'You can only compare up to 4 products.',
+          timer: 1500,
+          showConfirmButton: false,
+        });
+        return;
+      }
+
       const index = compareList.value.findIndex(item => item.id === product.id);
       if (index === -1) {
         compareList.value.push(product);
         localStorage.setItem('compareList', JSON.stringify(compareList.value));
+        
+        // Show success notification
+        Swal.fire({
+          icon: 'success',
+          title: 'Added to Compare List!',
+          text: 'The product has been added to your comparison list.',
+          timer: 1500,
+          showConfirmButton: false,
+        });
+      } else {
+        Swal.fire({
+          icon: 'info',
+          title: 'Already in List',
+          text: 'This product is already in your comparison list.',
+          timer: 1500,
+          showConfirmButton: false,
+        });
       }
     };
 
