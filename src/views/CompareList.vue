@@ -38,7 +38,7 @@
         </tr>
 
         <!-- Row for Categories -->
-        <tr>
+        <tr class="bg-gray-200">
           <th class="py-2 px-4 text-center text-white font-bold bg-gray-800">Category</th>
           <td v-for="(product, index) in compareList" :key="product.id" class="py-4 px-6 border-b border-gray-200 text-center">
             {{ product.category }}

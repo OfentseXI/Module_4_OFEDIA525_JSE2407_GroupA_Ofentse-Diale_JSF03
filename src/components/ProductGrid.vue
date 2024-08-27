@@ -36,6 +36,7 @@
 <script>
 import { ref, onMounted } from 'vue';
 import { useShoppingStore } from '../stores/stores';
+import Swal from 'sweetalert2';
 
 export default {
   name: 'ProductGrid',
