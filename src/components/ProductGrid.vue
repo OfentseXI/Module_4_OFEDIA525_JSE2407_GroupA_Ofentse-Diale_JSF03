@@ -74,7 +74,7 @@ export default {
     });
 
     /**
-     * Toggle a product's favorite status
+     * Toggle a product's favorite status and update the wishlist count
      * @param {number} productId - The ID of the product to toggle
      */
     const toggleFavorite = (productId) => {
@@ -85,6 +85,9 @@ export default {
         favorites.value.push(productId);
       }
       localStorage.setItem('favorites', JSON.stringify(favorites.value));
+      
+      // Update wishlist count
+      updateCounts();
     };
 
     /**
@@ -113,6 +116,9 @@ export default {
       }
 
       localStorage.setItem('cart', JSON.stringify(cart.value));
+      
+      // Update cart count
+      updateCounts();
     };
 
     /**
@@ -153,6 +159,19 @@ export default {
           showConfirmButton: false,
         });
       }
+    };
+
+    /**
+     * Update the wishlist and cart counts
+     */
+    const updateCounts = () => {
+      const wishlistCount = favorites.value.length;
+      const cartCount = cart.value.reduce((total, item) => total + item.quantity, 0);
+
+      // Dispatch a custom event to update the counts in the Navbar
+      window.dispatchEvent(new CustomEvent('updateCounts', {
+        detail: { wishlistCount, cartCount }
+      }));
     };
 
     // Return the methods to be used in the template

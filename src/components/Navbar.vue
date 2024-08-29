@@ -55,23 +55,36 @@ export default {
     const wishlistCount = ref(0);
     const cartCount = ref(0);
 
+    /**
+     * Load initial counts from localStorage
+     */
     const loadCounts = () => {
       const storedWishlist = JSON.parse(localStorage.getItem('favorites')) || [];
       const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
 
       wishlistCount.value = storedWishlist.length;
-      cartCount.value = storedCart.length;
+      cartCount.value = storedCart.reduce((total, item) => total + item.quantity, 0);
     };
 
+    /**
+     * Update counts based on the custom event
+     * @param {CustomEvent} event - The custom event containing updated counts
+     */
     const updateCounts = (event) => {
       wishlistCount.value = event.detail.wishlistCount;
       cartCount.value = event.detail.cartCount;
     };
 
+    /**
+     * Toggle the mobile menu
+     */
     const toggleMenu = () => {
       open.value = !open.value;
     };
 
+    /**
+     * Handle user logout
+     */
     const logout = () => {
       localStorage.removeItem('jwt');
       isAuthenticated.value = false;
