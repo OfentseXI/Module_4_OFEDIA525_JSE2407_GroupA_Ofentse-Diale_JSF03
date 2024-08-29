@@ -77,7 +77,18 @@ export default {
      * Toggle a product's favorite status and update the wishlist count
      * @param {number} productId - The ID of the product to toggle
      */
-    const toggleFavorite = (productId) => {
+     const toggleFavorite = (productId) => {
+      const store = useShoppingStore();
+      if (!store.isLoggedIn) {
+        Swal.fire({
+          icon: 'info',
+          title: 'Please Log In',
+          text: 'You need to log in to add items to your wishlist.',
+          timer: 1500,
+          showConfirmButton: false,
+        });
+        return;
+      }
       const index = favorites.value.indexOf(productId);
       if (index > -1) {
         favorites.value.splice(index, 1);
@@ -136,6 +147,17 @@ export default {
      * @param {Object} product - The product to add to the compare list
      */
     const addToCompare = (product) => {
+      const store = useShoppingStore();
+      if (!store.isLoggedIn) {
+        Swal.fire({
+          icon: 'info',
+          title: 'Please Log In',
+          text: 'You need to log in to add items to your comparison list.',
+          timer: 1500,
+          showConfirmButton: false,
+        });
+        return;
+      }
       if (compareList.value.length >= 4) {
         Swal.fire({
           icon: 'warning',
