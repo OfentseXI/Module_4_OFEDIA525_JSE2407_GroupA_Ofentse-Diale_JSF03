@@ -103,23 +103,33 @@ export default {
      * Add a product to the cart or increment its quantity if already present
      * @param {Object} product - The product to add to the cart
      */
-    const addToCart = (product) => {
-      const index = cart.value.findIndex(item => item.id === product.id);
-      const store = useShoppingStore();
+     const addToCart = (product) => {
+        const store = useShoppingStore();
+        if (!store.isLoggedIn) {
+          Swal.fire({
+            icon: 'info',
+            title: 'Please Log In',
+            text: 'You need to log in to add items to your cart.',
+            timer: 1500,
+            showConfirmButton: false,
+          });
+          return;
+        }
 
-      if (index === -1) {
-        cart.value.push({ ...product, quantity: 1 });
-        store.showNotification('success', 'Your item has been added to the cart');
-      } else {
-        cart.value[index].quantity += 1;
-        store.showNotification('success', 'Your item has been updated');
-      }
+        const index = cart.value.findIndex(item => item.id === product.id);
+        if (index === -1) {
+          cart.value.push({ ...product, quantity: 1 });
+          store.showNotification('success', 'Your item has been added to the cart');
+        } else {
+          cart.value[index].quantity += 1;
+          store.showNotification('success', 'Your item has been updated');
+        }
 
-      localStorage.setItem('cart', JSON.stringify(cart.value));
-      
-      // Update cart count
-      updateCounts();
-    };
+        localStorage.setItem('cart', JSON.stringify(cart.value));
+        
+        // Update cart count
+        updateCounts();
+      };
 
     /**
      * Add a product to the compare list if not already present, and if the list is below the limit of 4 items

@@ -39,7 +39,7 @@
           <th colSpan="3" class="px-6 py-4 text-center text-gray-700">Total</th>
           <td colSpan="3" class="px-6 py-4 text-center">
             <span class="bg-red-500 text-white rounded-full px-3 py-1">
-              ${{ total.toFixed(2) }}
+              ${{ total.toFixed() }}
             </span>
           </td>
         </tr>
